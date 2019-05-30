@@ -29,7 +29,11 @@ describe('BookingsRepo', () => {
   })
 
   it('should find the most booked date', () => {
-    expect(bookingsRepo.popularDay()).to.equal('21/10/2019')
+    expect(bookingsRepo.mostPopularDay()).to.equal('21/10/2019')
+  })
+
+  it('should find day with the most open rooms', () => {
+    expect(bookingsRepo.leastPopularDay('18/07/2019')).to.equal('18/07/2019')
   })
 
 })
