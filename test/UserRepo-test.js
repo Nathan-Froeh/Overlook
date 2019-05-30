@@ -2,54 +2,13 @@ import $ from 'jquery';
 import chai from 'chai';
 const expect = chai.expect;
 import UserRepo from '../src/UserRepo.js'
-
+import users from '../test/DUMMY.js';
 
 describe('UserRepo', () => {
   let userRepo;
-  let users = [
-    {
-      "id": 1,
-      "name": "Autumn Toy"
-    },
-    {
-      "id": 2,
-      "name": "Jannie VonRueden"
-    },
-    {
-      "id": 3,
-      "name": "Anya Upton"
-    },
-    {
-      "id": 4,
-      "name": "Milo Ankunding"
-    },
-    {
-      "id": 5,
-      "name": "Reginald Schaden"
-    },
-    {
-      "id": 6,
-      "name": "Sedrick Bayer"
-    },
-    {
-      "id": 7,
-      "name": "Kathryn Medhurst"
-    },
-    {
-      "id": 8,
-      "name": "Meredith Jenkins"
-    },
-    {
-      "id": 9,
-      "name": "Florine Jaskolski"
-    },
-    {
-      "id": 10,
-      "name": "Kiel O'Reilly"
-    }
-  ]
+  
   beforeEach(() => {
-    userRepo = new UserRepo(users);
+    userRepo = new UserRepo(users.users);
   })
   it('should be a function', () => {
     expect(UserRepo).to.be.a('function')

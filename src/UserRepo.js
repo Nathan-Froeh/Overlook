@@ -1,6 +1,3 @@
-import $ from 'jquery';
-import fetch from 'cross-fetch';
-
 
 
 class UserRepo {
