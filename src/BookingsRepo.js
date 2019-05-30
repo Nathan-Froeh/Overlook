@@ -1,6 +1,4 @@
 
-var moment = require('moment');
-
 class BookingsRepo {
   constructor(bookings) {
     this.bookings = bookings;
@@ -23,7 +21,7 @@ class BookingsRepo {
   mostPopularDay() {
     return Object.keys(this.bookingByDate()).sort((a, b) => {
       return this.bookingByDate()[b] - this.bookingByDate()[a]
-})[0]
+    })[0]
   }
 
   bookingByDate() {
@@ -51,6 +49,41 @@ class BookingsRepo {
     return firstDay[6] + firstDay[7] + '/' + firstDay[4] + firstDay[5] + '/'
       + firstDay[0] + firstDay[1] + firstDay[2] + firstDay[3]
   }
+
+  numRoomsAvailable(today) {
+    return this.bookings.length - this.bookingByDate()[today]
+  }
+
+  availableByType(today, type, roomsRepo) {
+    if (this.objectRoomTypes(today, roomsRepo)[type]) {
+      return this.objectRoomTypes(today, roomsRepo)[type]
+    } else {
+      return this.objectRoomTypes(today, roomsRepo)
+    }
+  }
+
+  openRoomNumbers(today) {
+    return this.bookings.reduce((acc, booking) => {
+      if (today !== booking.date) {
+        acc.push(booking.roomNumber)
+      }
+      return acc;
+    }, [])
+  }
+
+  objectRoomTypes(today, roomsRepo) {
+    let available = this.openRoomNumbers(today).map(roomNumber => {
+      return roomsRepo.rooms.find(room => room.number === roomNumber)
+    })
+    return available.reduce((acc, room) => {
+      if (!acc[room.roomType]) {
+        acc[room.roomType] = []
+      }
+      acc[room.roomType].push(room)
+      return acc;
+    }, {})
+  }
+
 }
 
 export default BookingsRepo;
@@ -58,6 +91,3 @@ export default BookingsRepo;
 
 
 
-// leastPopularDay() finds day with least bookings
-// roomsAvailable( date ) finds currently open rooms
-// availableByType( today, type ) finds a room open today by type or all available rooms

@@ -4,6 +4,13 @@ import BookingsRepo from '../src/BookingsRepo.js'
 import bookings from '../test/DUMMY.js';
 import RoomsRepo from '../src/RoomsRepo.js';
 
+var availableRoom = [ { number: 6,
+  roomType: 'residential suite',
+  bidet: false,
+  bedSize: 'twin',
+  numBeds: 1,
+  costPerNight: 426.45 } ]
+
 describe('BookingsRepo', () => {
   let bookingsRepo, roomsRepo;
   
@@ -34,6 +41,15 @@ describe('BookingsRepo', () => {
 
   it('should find day with the most open rooms', () => {
     expect(bookingsRepo.leastPopularDay('18/07/2019')).to.equal('18/07/2019')
+  })
+
+  it('should return number of rooms available', () => {
+    expect(bookingsRepo.numRoomsAvailable('21/10/2019')).to.equal(7)
+  })
+
+  it('should return rooms available by type for a given day', () => {
+    expect(bookingsRepo.availableByType('21/10/2019', "residential suite"
+      , roomsRepo)).to.deep.equal(availableRoom)
   })
 
 })
