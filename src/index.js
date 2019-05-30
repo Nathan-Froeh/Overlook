@@ -11,3 +11,18 @@ import './css/base.scss';
 import './images/turing-logo.png'
 
 console.log('This is the JavaScript entry file - your code begins here.');
+
+// let userData;
+
+fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/users/users')
+  .then(response => response.json())
+  .then(data => {
+    timer(data.users);
+  });
+
+
+function timer(stuff) {
+  console.log(stuff);
+}
+
+// setTimeout(timer, 1000);
