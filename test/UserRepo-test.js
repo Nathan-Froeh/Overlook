@@ -4,6 +4,12 @@ const expect = chai.expect;
 import UserRepo from '../src/UserRepo.js'
 import users from '../test/DUMMY.js';
 
+
+let user = {
+  "id": 1,
+  "name": "Autumn Toy"
+};
+
 describe('UserRepo', () => {
   let userRepo;
   
@@ -20,6 +26,11 @@ describe('UserRepo', () => {
 
   it('should return an array', () => {
     expect(userRepo.users).to.be.a('array')
+  })
+
+  it('should be a user object', () => {
+    userRepo.getCurrentUser("Autumn Toy")
+    expect(userRepo.currentUser).to.deep.equal(user)
   })
 })
 
