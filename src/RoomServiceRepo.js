@@ -1,3 +1,5 @@
+import RoomService from '../src/RoomService.js'
+
 class RoomServiceRepo {
   constructor(roomService) {
     this.roomService = roomService;
@@ -10,6 +12,10 @@ class RoomServiceRepo {
     }, 0)
   }
 
+  makeRoomService(id) {
+    let allOrders = this.roomService.filter(order => order.userID === id)
+    return new RoomService(id, allOrders);
+  }
 
 }
 

@@ -24,5 +24,3 @@ fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/users/users')
 function timer(stuff) {
   console.log(stuff);
 }
-
-// setTimeout(timer, 1000);
