@@ -2,13 +2,35 @@
 $primary-background: pink;
 
 
-body{
-  margin-top: 100px;
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
   font-family: 'Trebuchet MS', serif;
-  line-height: 1.6
+  line-height: 1.6;
+  display: flex;
+  flex-wrap: wrap;
 }
+
+nav {
+  background: #3B8DBC;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  img {
+    width: 50px;
+  }
+}
+
+main {
+  height: 90%;
+  width: 100%;
+  background: #ECF0F5;
+}
+
 .container{
-  width: 800px;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -30,13 +52,13 @@ ul.tabs li{
 }
 
 ul.tabs li.current{
-  background: #ededed;
+  background: white;
   color: #222;
 }
 
 .tab-content{
   display: none;
-  background: #ededed;
+  background: white;
   padding: 15px;
 }
 

@@ -1,10 +1,10 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
 
-// An example of how you import jQuery into a JS file if you use jQuery in that file
+/*---------- IMPORTS -----------*/
+
 import $ from 'jquery';
 
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import RoomServiceRepo from '../src/RoomServiceRepo.js'
 import RoomService from '../src/RoomService.js'
@@ -13,19 +13,18 @@ import BookingsRepo from '../src/BookingsRepo.js';
 import RoomsRepo from '../src/RoomsRepo.js'
 import DomUpdates from './DomUpdates';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/home-icon-silhouette.svg'
 import './images/double-king-size-bed.svg'
 import './images/man-user.svg'
 import './images/covered-food-tray-on-a-hand-of-hotel-room-service.svg'
 import './images/lighthouse.svg'
 
-
-console.log('This is the JavaScript entry file - your code begins here.');
+/*---------- VARIABLES -----------*/
 
 // let userData;
 let roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService;
 
+/*---------- EVENT LISTENERS -----------*/
 $(document).ready(() => {
   fetchUsers()
   fetchRooms()
@@ -33,6 +32,12 @@ $(document).ready(() => {
   fetchRoomService()
 })
 
+$('.tabs li').click(function() {
+  var tab_id = $(this).attr('data-tab');
+  DomUpdates.tabClick(tab_id, this)
+})
+
+/*---------- FUNCTIONS -----------*/
 
 function fetchUsers() {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/users/users')
@@ -69,7 +74,3 @@ function fetchRoomService() {
 }
 
 
-$('.tabs li').click(function() {
-  var tab_id = $(this).attr('data-tab');
-  DomUpdates.tabClick(tab_id, this)
-})
