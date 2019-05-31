@@ -11,9 +11,15 @@ import RoomService from '../src/RoomService.js'
 import UserRepo from '../src/UserRepo.js'
 import BookingsRepo from '../src/BookingsRepo.js';
 import RoomsRepo from '../src/RoomsRepo.js'
+import DomUpdates from './DomUpdates';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+import './images/home-icon-silhouette.svg'
+import './images/double-king-size-bed.svg'
+import './images/man-user.svg'
+import './images/covered-food-tray-on-a-hand-of-hotel-room-service.svg'
+import './images/lighthouse.svg'
+
 
 console.log('This is the JavaScript entry file - your code begins here.');
 
@@ -61,3 +67,9 @@ function fetchRoomService() {
       console.log('room service ', roomServiceRepo.roomService)
     });
 }
+
+
+$('.tabs li').click(function() {
+  var tab_id = $(this).attr('data-tab');
+  DomUpdates.tabClick(tab_id, this)
+})

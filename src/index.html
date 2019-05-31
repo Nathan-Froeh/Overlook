@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>OverLook</title>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
+    <nav>
 
-    <img src="/images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+    </nav>
+    <main>
+      <section class="container">
+        <ul class="tabs">
+          <li class="tab-link current" data-tab="tab-1">Main
+            <img src="images/home-icon-silhouette.svg" alt="Icon silhouette of a home">
+          </li>
+          <li class="tab-link" data-tab="tab-2">Orders
+            <img src="images/covered-food-tray-on-a-hand-of-hotel-room-service.svg" 
+            alt="Icon silhouette of a dinner tray being delivered">
+          </li>
+          <li class="tab-link" data-tab="tab-3">Rooms
+            <img src="images/double-king-size-bed.svg" alt="Icon silhouette of a bed">
+          </li>
+          <li class="tab-link" data-tab="tab-4">Customer
+            <img src="images/man-user.svg" alt="Icon silhouette of a person">
+          </li>
+        </ul>
+        <article id="tab-1" class="tab-content current">
+              Main info
+        </article>
+        <article id="tab-2" class="tab-content">
+               Orders info 
+        </article>
+        <article id="tab-3" class="tab-content">
+              Rooms info
+        </article>
+        <article id="tab-4" class="tab-content">
+              Customer info
+        </article>
+      </section>
+    </main>
+
+
+
 
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
