@@ -2,12 +2,13 @@ import chai from 'chai';
 const expect = chai.expect;
 import RoomsRepo from '../src/RoomsRepo.js'
 import rooms from '../test/DUMMY.js';
-
+import BookingsRepo from '../src/BookingsRepo.js';
 
 describe('RoomsRepo', () => {
-  let roomsRepo;
+  let roomsRepo, bookingsRepo;
   
   beforeEach(() => {
+    bookingsRepo = new BookingsRepo(rooms.bookings);
     roomsRepo = new RoomsRepo(rooms.rooms);
   })
   it('should be a function', () => {
@@ -23,6 +24,13 @@ describe('RoomsRepo', () => {
   })
 
   it('should return open rooms by defined date', () => {
-    expect(roomsRepo.totalRoomsAvailable()).to.equal()
+    expect(roomsRepo.totalRoomsAvailable(bookingsRepo, '21/10/2019'))
+      .to.equal(7)
   })
+
+  it('should return % of rooms filled today', () => {
+    expect(roomsRepo.percentRoomsAvailable(bookingsRepo, '21/10/2019'))
+      .to.equal(30)
+  })
+
 })
