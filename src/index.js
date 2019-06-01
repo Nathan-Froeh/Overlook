@@ -23,6 +23,7 @@ import './images/lighthouse.svg'
 
 // let userData;
 let roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService;
+let roomInfo;
 let today = new Date().toLocaleDateString('en-GB')
 
 /*---------- EVENT LISTENERS -----------*/
@@ -31,16 +32,12 @@ $(document).ready(() => {
   fetchRooms()
   fetchBookings()
   fetchRoomService()
-  setTimeout(getGeneral, 500)
+  setTimeout(getGeneral, 600)
 })
 
-$('.tabs li').click(function() {
-  var tab_id = $(this).attr('data-tab');
-  DomUpdates.tabClick(tab_id, this)
-})
 
 $('.user__search__input').keypress(() => {
-
+  
 })
 
 $('.user__search__btn').click(() => {
@@ -52,10 +49,12 @@ $('.user__search__btn').click(() => {
   // }
   newUserInfo()
 })
-
+  
+$('.tabs li').click(tabClick)
 $('.submit__rooms__date').click(roomsByDate)
 $('.order__submit').click(orderFood)
 $('.select__room__type').click(displayRoomType)
+$(document).on('click', '.book__room', bookRoom)
 
 
 /*---------- FUNCTIONS -----------*/
@@ -92,6 +91,11 @@ function fetchRoomService() {
       roomServiceRepo = new RoomServiceRepo(data.roomServices);
       console.log('room service ', roomServiceRepo.roomService)
     });
+}
+
+function tabClick() {
+  var tab_id = $(this).attr('data-tab');
+  DomUpdates.tabClick(tab_id, this)
 }
   
 function getGeneral() {
@@ -136,6 +140,18 @@ function instaCook(order) {
 
 function displayRoomType(e) {
   let type = e.target.innerText.toLowerCase()
-  console.log(type, bookingsRepo.availableByType(today, type, roomsRepo))
+  roomInfo = bookingsRepo.availableByType(today, type, roomsRepo)[0]
+  let info = [...Object.values(roomInfo)]
+  info[2] === true ? info[2] = 'Yes' : info[2] = 'No';
+  DomUpdates.displayRoomByType(info)
+}
+
+function bookRoom() {
+  let newBooking = {userID: userRepo.currentUser.id,
+    date: today,
+    roomNumber: roomInfo.number}
+  console.log(bookingsRepo.bookings)
+  bookingsRepo.bookings.push(newBooking)
+  console.log(bookingsRepo.bookings)
 
 }

@@ -45,8 +45,22 @@ let DomUpdates = {
 
   roomsByDate(bookingsRepo, date) {
     $('.open_rooms_by_date').text(bookingsRepo.numRoomsAvailable(date))
-  }
+  },
 
+  displayRoomByType(info) {
+    $('.room__option').remove()
+    $('.no__room__booked').append(`
+      <section class = 'room__option'>
+        <p>Room type: <span>${info[1]}</span></p>
+        <p>Bed count: <span>${info[4]}</span></p>
+        <p>Bed size: <span>${info[3]}</span></p>
+        <p>Bidet: <span>${info[2]}</span></p>
+        <p>Price: $<span>${info[5]}</span></p>
+        <p>Room Number: <span>${info[0]}</span></p>
+        <button class = 'book__room'>Book Room</button>
+      </section>
+    `)
+  }
   
 
 }
