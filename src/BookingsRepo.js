@@ -51,7 +51,7 @@ class BookingsRepo {
   }
 
   numRoomsAvailable(today) {
-    return this.bookings.length - this.bookingByDate()[today] || 200;
+    return 200 - this.bookingByDate()[today] || 200;
   }
 
   availableByType(today, type, roomsRepo) {

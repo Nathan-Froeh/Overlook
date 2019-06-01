@@ -163,7 +163,7 @@ function bookRoom() {
   bookingsRepo.bookings.push(newBooking)
   DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
   DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
-  console.log(bookingsRepo.bookings)
+  console.log(bookingsRepo.numRoomsAvailable(today))
 }
 
 function makeNewUser() {
