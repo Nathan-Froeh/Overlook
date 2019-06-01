@@ -91,7 +91,7 @@ function tabClick() {
 }
   
 function getGeneral() {
-  DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
+  DomUpdates.generalMain(roomServiceRepo, bookingsRepo, roomsRepo)
 }
 
 function isCurrentUser() {
@@ -109,8 +109,7 @@ function isCurrentUser() {
 
 function newUserInfo() {
   roomService = roomServiceRepo.makeRoomService(userRepo.currentUser.id)
-  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, 
-    roomService)
+  DomUpdates.loadUserInfo(userRepo, roomService)
 }
 
 function getUser() {
@@ -175,6 +174,6 @@ function makeNewUser() {
 }
 
 function refresh() {
-  DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
-  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
+  DomUpdates.generalMain(roomServiceRepo, bookingsRepo, roomsRepo)
+  DomUpdates.loadUserInfo(userRepo, roomService)
 }
