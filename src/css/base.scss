@@ -81,6 +81,11 @@ ul.tabs li.current{
   display: inherit;
 }
 
-// .personal {
-//   display: none;
-// }
+div.personal {
+  border: red solid 2px;
+
+}
+
+.hidden {
+  display: none;
+}

@@ -29,24 +29,22 @@
         </ul>
         <article id="tab-1" class="tab-content current">
           Main info
-          <div class = 'general'>
-            <p>Rooms available <span class = 'rooms__available'></span> </p>
-            <p>Today's income <span class = 'todays__income'></span></p>
-            <p>% rooms full today <span class = 'rooms__full'></span></p>
-          </div>
-          <div class = 'personal'>
 
-          </div>
+          <p>Rooms available <span class = 'rooms__available'></span> </p>
+          <p>Today's income <span class = 'todays__income'></span></p>
+          <p>% rooms full today <span class = 'rooms__full'></span></p>
+
+          
         </article>
         <article id="tab-2" class="tab-content">
           Orders info 
           <div class = 'general'>
             <p>total orders <span class = 'total__orders'></span></p>
           </div>
-          <div class = 'personal'>
-            <p>all orders with date <span class = 'all__personal__orders'></span></p>
-            <p>total spent on set day <span class = 'personal__spent__by__day'></span></p>
-            <p>grand total spent <span class = 'personal__grand__total_spent'></span></p>
+          <div class = 'personal hidden'>
+            <p>all orders with date: <span class = 'all__personal__orders'></span></p>
+            <p>total spent on set day: <span class = 'personal__spent__by__day'></span></p>
+            <p>grand total spent: <span class = 'personal__grand__total_spent'></span></p>
           </div>
         </article>
         <article id="tab-3" class="tab-content">
@@ -54,10 +52,25 @@
           <div class = 'general'>
             <p>most popular book date <span class = 'popular__book'></span></p>
             <p>date with most rooms open <span class = 'least__popular'></span></p>
-            <p>search by date for total open rooms <span class = 'open_rooms_by_date'></span></p>
+            <form action="search by date for total open rooms">
+              <label for="rooms__date__select">search by date for total open rooms</label>
+              <span class = 'open_rooms_by_date'></span>
+              <input type="date" class = 'rooms__date__select'>
+              <input type="submit" class = 'submit__rooms__date'>
+            </form>
+            
           </div>
-          <div class = 'personal'>
-            <p>submit order</p>
+          <div class = 'personal hidden'>
+            <div class = 'no__room__booked'>
+              <button class = 'select__room__type'>Residential suite</button>
+              <button class = 'select__room__type'>Single room</button>
+              <button class = 'select__room__type'>Junior suite</button>
+              <button class = 'select__room__type'>Suite</button>
+            </div>
+            <form action="submit order">
+              <label for="order__submit">Order Sandwich</label>
+              <input type="submit" class = 'order__submit'>
+            </form>
           </div>
         </article>
         <article id="tab-4" class="tab-content">
@@ -75,7 +88,7 @@
               <input type="submit" class = 'user__search__btn'>
             </form>
           </div>
-          <div class = 'personal'>
+          <div class = 'personal hidden'>
             <p>customer name <span class = 'guest__name'></span></p>
             <p>customer id <span class = 'guest__id'></span></p>
           </div>

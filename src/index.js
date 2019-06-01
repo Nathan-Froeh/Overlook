@@ -23,6 +23,8 @@ import './images/lighthouse.svg'
 
 // let userData;
 let roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService;
+let roomInfo;
+let today = new Date().toLocaleDateString('en-GB')
 
 /*---------- EVENT LISTENERS -----------*/
 $(document).ready(() => {
@@ -30,27 +32,22 @@ $(document).ready(() => {
   fetchRooms()
   fetchBookings()
   fetchRoomService()
-  setTimeout(getGeneral, 500)
+  setTimeout(getGeneral, 600)
 })
 
-$('.tabs li').click(function() {
-  var tab_id = $(this).attr('data-tab');
-  DomUpdates.tabClick(tab_id, this)
-})
 
 $('.user__search__input').keypress(() => {
-
+  
 })
 
-$('.user__search__btn').click(() => {
-  event.preventDefault()
-  userRepo.getCurrentUser($('.user__search__input').val())
-  console.log('first user ', userRepo.users[0])
-  // if (userRepo.users.includes($('.user__search__input').val())) {
-  //   console.log('yes')
-  // }
-  newUserInfo()
-})
+$('.user__search__btn').click(isCurrentUser)
+  
+$('.tabs li').click(tabClick)
+$('.submit__rooms__date').click(roomsByDate)
+$('.order__submit').click(orderFood)
+$('.select__room__type').click(displayRoomType)
+$(document).on('click', '.book__room', bookRoom)
+
 
 /*---------- FUNCTIONS -----------*/
 
@@ -87,13 +84,97 @@ function fetchRoomService() {
       console.log('room service ', roomServiceRepo.roomService)
     });
 }
+
+function tabClick() {
+  var tab_id = $(this).attr('data-tab');
+  DomUpdates.tabClick(tab_id, this)
+}
   
 function getGeneral() {
   DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
+}
 
+function isCurrentUser() {
+  event.preventDefault()
+  let isUser = userRepo.users.find(user => {
+    return user.name === $('.user__search__input').val()
+  })
+  if (typeof isUser === 'undefined') {
+    makeNewUser()
+    getUser()
+  } else {
+    getUser()
+  }
 }
 
 function newUserInfo() {
   roomService = roomServiceRepo.makeRoomService(userRepo.currentUser.id)
+  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, 
+    roomService)
+}
+
+function getUser() {
+  DomUpdates.showUserInfo()
+  userRepo.getCurrentUser($('.user__search__input').val())
+  newUserInfo()
+}
+
+function roomsByDate() {
+  event.preventDefault()
+  console.log($('.rooms__date__select').val().split('-').reverse().join('/'))
+  let date = $('.rooms__date__select').val().split('-').reverse().join('/');
+  DomUpdates.roomsByDate(bookingsRepo, date);
+}
+
+function orderFood() {
+  event.preventDefault()
+  let order = readGuestsMind()
+  roomServiceRepo.roomService.push(instaCook(order))
+  newUserInfo()
+  refresh()
+}
+
+function readGuestsMind() {
+  let index = Math.floor(Math.random() * (99 - 1 + 1)) + 1; 
+  let food = roomServiceRepo.roomService[index]
+  return {food: food.food, cost: food.totalCost}
+}
+
+function instaCook(order) {
+  return {
+    "userID": userRepo.currentUser.id,
+    "date": today,
+    "food": order.food,
+    "totalCost": order.cost
+  }
+}
+
+function displayRoomType(e) {
+  let type = e.target.innerText.toLowerCase()
+  roomInfo = bookingsRepo.availableByType(today, type, roomsRepo)[0]
+  let info = [...Object.values(roomInfo)]
+  info[2] === true ? info[2] = 'Yes' : info[2] = 'No';
+  DomUpdates.displayRoomByType(info)
+}
+
+function bookRoom() {
+  let newBooking = {userID: userRepo.currentUser.id,
+    date: today,
+    roomNumber: roomInfo.number}
+  bookingsRepo.bookings.push(newBooking)
+  refresh()
+  console.log(bookingsRepo.numRoomsAvailable(today))
+}
+
+function makeNewUser() {
+  let newUser = {
+    id: userRepo.users.length + 1,
+    name: $('.user__search__input').val()
+  };
+  userRepo.users.push(newUser)
+}
+
+function refresh() {
+  DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
   DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
 }

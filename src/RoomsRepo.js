@@ -2,6 +2,9 @@
 class RoomsRepo {
   constructor(rooms) {
     this.rooms = rooms;
+    this.residential;
+    this.single;
+    this.junior;
   }
   totalRoomsAvailable(bookingRepo, today) {
     return bookingRepo.numRoomsAvailable(today)
