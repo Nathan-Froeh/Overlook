@@ -9,6 +9,7 @@ import RoomsRepo from '../src/RoomsRepo.js';
 let today = new Date().toLocaleDateString('en-GB')
 console.log(today)
 // today = '01/01/2020'
+let roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService;
 let DomUpdates = {
 
   tabClick(id, it) {
@@ -19,7 +20,6 @@ let DomUpdates = {
   },
 
   generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo) {
-    console.log(bookingsRepo.numRoomsAvailable(today))
     $('.rooms__available').text(bookingsRepo.numRoomsAvailable(today))
     $('.todays__income').text(roomServiceRepo.totalOrderCost(today))
     $('.rooms__full').text(roomsRepo.percentRoomsAvailable(bookingsRepo, today))
@@ -36,6 +36,10 @@ let DomUpdates = {
     $('.personal__spent__by__day').text(roomService.todaysTotal(today))
     $('.personal__grand__total_spent').text(roomService.totalOrders())
     console.log(roomService.allOrders)
+  },
+
+  roomsByDate(bookingsRepo, date) {
+    $('.open_rooms_by_date').text(bookingsRepo.numRoomsAvailable(date))
   }
 
 }

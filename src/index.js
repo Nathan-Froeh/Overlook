@@ -52,6 +52,8 @@ $('.user__search__btn').click(() => {
   newUserInfo()
 })
 
+$('.submit__rooms__date').click(roomsByDate)
+
 /*---------- FUNCTIONS -----------*/
 
 function fetchUsers() {
@@ -95,5 +97,13 @@ function getGeneral() {
 
 function newUserInfo() {
   roomService = roomServiceRepo.makeRoomService(userRepo.currentUser.id)
-  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
+  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, 
+    roomService)
+}
+
+function roomsByDate() {
+  event.preventDefault()
+  console.log($('.rooms__date__select').val().split('-').reverse().join('/'))
+  let date = $('.rooms__date__select').val().split('-').reverse().join('/');
+  DomUpdates.roomsByDate(bookingsRepo, date);
 }
