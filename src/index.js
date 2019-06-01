@@ -55,6 +55,8 @@ $('.user__search__btn').click(() => {
 
 $('.submit__rooms__date').click(roomsByDate)
 $('.order__submit').click(orderFood)
+$('.select__room__type').click(displayRoomType)
+
 
 /*---------- FUNCTIONS -----------*/
 
@@ -130,4 +132,10 @@ function instaCook(order) {
     "food": order.food,
     "totalCost": order.cost
   }
+}
+
+function displayRoomType(e) {
+  let type = e.target.innerText.toLowerCase()
+  console.log(type, bookingsRepo.availableByType(today, type, roomsRepo))
+
 }

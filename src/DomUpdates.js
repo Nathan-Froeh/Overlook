@@ -21,7 +21,8 @@ let DomUpdates = {
 
   generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo) {
     $('.rooms__available').text(bookingsRepo.numRoomsAvailable(today))
-    $('.todays__income').text(roomServiceRepo.totalOrderCost(today))
+    $('.todays__income').text(roomServiceRepo.totalOrderCost(today) 
+      + bookingsRepo.totalRoomCost(today, roomsRepo))
     $('.rooms__full').text(roomsRepo.percentRoomsAvailable(bookingsRepo, today))
     $('.total__orders').text(roomServiceRepo.totalOrderCost(today))
     $('.popular__book').text(bookingsRepo.mostPopularDay())
