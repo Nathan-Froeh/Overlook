@@ -1,6 +1,86 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: pink;
 
+
 body {
-  background-color: $primary-background;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Trebuchet MS', serif;
+  line-height: 1.6;
+  display: flex;
+  flex-wrap: wrap;
 }
+
+h1 {
+  font-size: 60px;
+  margin: 0;
+}
+
+nav {
+  padding: 10px;
+  background: #3B8DBC;
+  height: 10%;
+  width: 100%;
+  div{
+    display: flex;
+    align-items: baseline;
+    width: 400px;
+    img {
+    height: 50px;
+    width: 50px;
+    border: solid black 7px;
+    border-radius: 50%;
+    }
+  }
+}
+
+main {
+  height: 90%;
+  width: 100%;
+  background: #ECF0F5;
+}
+
+.container{
+  width: 90%;
+  margin: 0 auto;
+}
+
+img {
+  width: 30px;
+}
+
+ul.tabs{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+ul.tabs li{
+  background: none;
+  color: #222;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+  height: 30px;
+  width: 60px;
+}
+
+ul.tabs li.current{
+  background: white;
+  color: #222;
+}
+
+.tab-content{
+  display: none;
+  background: white;
+  padding: 15px;
+}
+
+.tab-content.current{
+  display: inherit;
+}
+
+// .personal {
+//   display: none;
+// }
