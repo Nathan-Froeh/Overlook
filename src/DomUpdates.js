@@ -60,8 +60,15 @@ let DomUpdates = {
         <button class = 'book__room'>Book Room</button>
       </section>
     `)
+  },
+
+  showUserInfo() {
+    $('.personal').removeClass('hidden')
+  },
+
+  hideUserInfo() {
+    $('.personal').addClass('hidden')
   }
-  
 
 }
 

@@ -82,13 +82,10 @@ ul.tabs li.current{
 }
 
 div.personal {
-  p {
-    color: red;
-  }
-  label {
-    color: red;
-  }
+  border: red solid 2px;
+
 }
-// .personal {
-//   display: none;
-// }
+
+.hidden {
+  display: none;
+}

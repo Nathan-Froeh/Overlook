@@ -40,22 +40,7 @@ $('.user__search__input').keypress(() => {
   
 })
 
-$('.user__search__btn').click(() => {
-  event.preventDefault()
-  let isUser = userRepo.users.find(user => {
-    return user.name === $('.user__search__input').val()
-  })
-  console.log('you bet ya ', isUser)
-  console.log('user count ', userRepo.users.length)
-  if (typeof isUser === 'undefined') {
-    makeNewUser()
-    userRepo.getCurrentUser($('.user__search__input').val())
-    newUserInfo()
-  } else {
-    userRepo.getCurrentUser($('.user__search__input').val())
-    newUserInfo()
-  }
-})
+$('.user__search__btn').click(isCurrentUser)
   
 $('.tabs li').click(tabClick)
 $('.submit__rooms__date').click(roomsByDate)
@@ -107,13 +92,31 @@ function tabClick() {
   
 function getGeneral() {
   DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
+}
 
+function isCurrentUser() {
+  event.preventDefault()
+  let isUser = userRepo.users.find(user => {
+    return user.name === $('.user__search__input').val()
+  })
+  if (typeof isUser === 'undefined') {
+    makeNewUser()
+    getUser()
+  } else {
+    getUser()
+  }
 }
 
 function newUserInfo() {
   roomService = roomServiceRepo.makeRoomService(userRepo.currentUser.id)
   DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, 
     roomService)
+}
+
+function getUser() {
+  DomUpdates.showUserInfo()
+  userRepo.getCurrentUser($('.user__search__input').val())
+  newUserInfo()
 }
 
 function roomsByDate() {
@@ -128,9 +131,7 @@ function orderFood() {
   let order = readGuestsMind()
   roomServiceRepo.roomService.push(instaCook(order))
   newUserInfo()
-  DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
-  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
-
+  refresh()
 }
 
 function readGuestsMind() {
@@ -161,8 +162,7 @@ function bookRoom() {
     date: today,
     roomNumber: roomInfo.number}
   bookingsRepo.bookings.push(newBooking)
-  DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
-  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
+  refresh()
   console.log(bookingsRepo.numRoomsAvailable(today))
 }
 
@@ -172,4 +172,9 @@ function makeNewUser() {
     name: $('.user__search__input').val()
   };
   userRepo.users.push(newUser)
+}
+
+function refresh() {
+  DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
+  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
 }
