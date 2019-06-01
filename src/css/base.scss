@@ -81,6 +81,14 @@ ul.tabs li.current{
   display: inherit;
 }
 
+div.personal {
+  p {
+    color: red;
+  }
+  label {
+    color: red;
+  }
+}
 // .personal {
 //   display: none;
 // }

@@ -5,10 +5,10 @@ class RoomService {
   }
 
   todaysTotal(date) {
-    return this.allOrders.reduce((acc, order) => {
+    return Number(this.allOrders.reduce((acc, order) => {
       order.date === date ? acc += order.totalCost : null;
       return acc;
-    }, 0)
+    }, 0).toFixed(2))
   }
 
   totalOrders() {

@@ -42,6 +42,8 @@ let DomUpdates = {
     $('.open_rooms_by_date').text(bookingsRepo.numRoomsAvailable(date))
   }
 
+  
+
 }
 
 export default DomUpdates;

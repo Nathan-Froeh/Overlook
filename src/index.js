@@ -23,6 +23,7 @@ import './images/lighthouse.svg'
 
 // let userData;
 let roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService;
+let today = new Date().toLocaleDateString('en-GB')
 
 /*---------- EVENT LISTENERS -----------*/
 $(document).ready(() => {
@@ -53,6 +54,7 @@ $('.user__search__btn').click(() => {
 })
 
 $('.submit__rooms__date').click(roomsByDate)
+$('.order__submit').click(orderFood)
 
 /*---------- FUNCTIONS -----------*/
 
@@ -106,4 +108,26 @@ function roomsByDate() {
   console.log($('.rooms__date__select').val().split('-').reverse().join('/'))
   let date = $('.rooms__date__select').val().split('-').reverse().join('/');
   DomUpdates.roomsByDate(bookingsRepo, date);
+}
+
+function orderFood() {
+  event.preventDefault()
+  let order = readGuestsMind()
+  roomServiceRepo.roomService.push(instaCook(order))
+  newUserInfo()
+}
+
+function readGuestsMind() {
+  let index = Math.floor(Math.random() * (99 - 1 + 1)) + 1; 
+  let food = roomServiceRepo.roomService[index]
+  return {food: food.food, cost: food.totalCost}
+}
+
+function instaCook(order) {
+  return {
+    "userID": userRepo.currentUser.id,
+    "date": today,
+    "food": order.food,
+    "totalCost": order.cost
+  }
 }
