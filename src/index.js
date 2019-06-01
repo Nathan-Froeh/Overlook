@@ -30,11 +30,26 @@ $(document).ready(() => {
   fetchRooms()
   fetchBookings()
   fetchRoomService()
+  setTimeout(getGeneral, 500)
 })
 
 $('.tabs li').click(function() {
   var tab_id = $(this).attr('data-tab');
   DomUpdates.tabClick(tab_id, this)
+})
+
+$('.user__search__input').keypress(() => {
+
+})
+
+$('.user__search__btn').click(() => {
+  event.preventDefault()
+  userRepo.getCurrentUser($('.user__search__input').val())
+  console.log('first user ', userRepo.users[0])
+  // if (userRepo.users.includes($('.user__search__input').val())) {
+  //   console.log('yes')
+  // }
+  newUserInfo()
 })
 
 /*---------- FUNCTIONS -----------*/
@@ -72,5 +87,12 @@ function fetchRoomService() {
       console.log('room service ', roomServiceRepo.roomService)
     });
 }
+  
+function getGeneral() {
+  DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
 
+}
 
+function newUserInfo() {
+  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
+}

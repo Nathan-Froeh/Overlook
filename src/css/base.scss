@@ -13,13 +13,26 @@ body {
   flex-wrap: wrap;
 }
 
+h1 {
+  font-size: 60px;
+  margin: 0;
+}
+
 nav {
+  padding: 10px;
   background: #3B8DBC;
   height: 10%;
   width: 100%;
-  display: flex;
-  img {
+  div{
+    display: flex;
+    align-items: baseline;
+    width: 400px;
+    img {
+    height: 50px;
     width: 50px;
+    border: solid black 7px;
+    border-radius: 50%;
+    }
   }
 }
 
@@ -35,7 +48,7 @@ main {
 }
 
 img {
-  width: 20px;
+  width: 30px;
 }
 
 ul.tabs{
@@ -49,6 +62,8 @@ ul.tabs li{
   display: inline-block;
   padding: 10px 15px;
   cursor: pointer;
+  height: 30px;
+  width: 60px;
 }
 
 ul.tabs li.current{
@@ -65,3 +80,7 @@ ul.tabs li.current{
 .tab-content.current{
   display: inherit;
 }
+
+// .personal {
+//   display: none;
+// }

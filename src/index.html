@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>OverLook</title>
+    <title>verLook</title>
   </head>
   <body>
     <nav>
-      <img src="images/lighthouse.svg" alt="OverLook logo, Icon of a lighthouse">
-      <h1>OverLook</h1>
+      <div>
+        <img src="images/lighthouse.svg" alt="OverLook logo, Icon of a lighthouse">
+        <h1>verLook</h1>
+      </div>
     </nav>
     <main>
       <section class="container">
@@ -26,16 +28,57 @@
           </li>
         </ul>
         <article id="tab-1" class="tab-content current">
-              Main info
+          Main info
+          <div class = 'general'>
+            <p>Rooms available <span class = 'rooms__available'></span> </p>
+            <p>Today's income <span class = 'todays__income'></span></p>
+            <p>% rooms full today <span class = 'rooms__full'></span></p>
+          </div>
+          <div class = 'personal'>
+
+          </div>
         </article>
         <article id="tab-2" class="tab-content">
-               Orders info 
+          Orders info 
+          <div class = 'general'>
+            <p>total orders <span class = 'total__orders'></span></p>
+          </div>
+          <div class = 'personal'>
+            <p>all orders with date</p>
+            <p>total spent on set day</p>
+            <p>grand total spent</p>
+          </div>
         </article>
         <article id="tab-3" class="tab-content">
-              Rooms info
+          Rooms info
+          <div class = 'general'>
+            <p>most popular book date <span class = 'popular__book'></span></p>
+            <p>date with most rooms open <span class = 'least__popular'></span></p>
+            <p>search by date for total open rooms <span class = 'open_rooms_by_date'></span></p>
+          </div>
+          <div class = 'personal'>
+            <p>submit order</p>
+          </div>
         </article>
         <article id="tab-4" class="tab-content">
-              Customer info
+          Customer info
+          <div class = 'general'>
+            <form class = 'user__search'>search bar
+              <input type="search" list = 'user__search' class = 'user__search__input'>
+                <!-- <datalist id = 'user__search'>
+                  <option value="Chocolate" class = 'option_1'>
+                  <option value="Coconut" class = 'option_2'>
+                  <option value="Mint" class = 'option_3'>
+                  <option value="Strawberry" class = 'option_4'>
+                  <option value="Vanilla" class = 'option_5'>
+                </datalist> -->
+              <input type="submit" class = 'user__search__btn'>
+            </form>
+          </div>
+          <div class = 'personal'>
+            <p>customer name <span class = 'guest__name'></span></p>
+            <p>customer id <span class = 'guest__id'></span></p>
+          </div>
         </article>
       </section>
     </main>

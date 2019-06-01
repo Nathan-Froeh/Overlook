@@ -51,7 +51,7 @@ class BookingsRepo {
   }
 
   numRoomsAvailable(today) {
-    return this.bookings.length - this.bookingByDate()[today]
+    return this.bookings.length - this.bookingByDate()[today] || 200;
   }
 
   availableByType(today, type, roomsRepo) {
@@ -90,7 +90,7 @@ export default BookingsRepo;
 
 // BookingsRepo:
 // 	totalRoomCost() total room cost for today
-// 	popularDay() finds the most booked date
+// 	mostPopularDay() finds the most booked date
 // 	leastPopularDay() finds day with least bookings
 // 	roomsAvailable( date ) finds currently open rooms
 // 	availableByType( today, type ) finds a room open today by type or all available rooms
