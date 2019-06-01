@@ -94,5 +94,6 @@ function getGeneral() {
 }
 
 function newUserInfo() {
-  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
+  roomService = roomServiceRepo.makeRoomService(userRepo.currentUser.id)
+  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
 }

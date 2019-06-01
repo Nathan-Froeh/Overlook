@@ -29,9 +29,13 @@ let DomUpdates = {
     $('.open_rooms_by_date').text()
   },
 
-  loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo) {
+  loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService) {
     $('.guest__name').text(userRepo.currentUser.name)
     $('.guest__id').text(userRepo.currentUser.id)
+    $('.all__personal__orders').text(roomService.allOrders)
+    $('.personal__spent__by__day').text(roomService.todaysTotal(today))
+    $('.personal__grand__total_spent').text(roomService.totalOrders())
+    console.log(roomService.allOrders)
   }
 
 }
