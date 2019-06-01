@@ -42,12 +42,19 @@ $('.user__search__input').keypress(() => {
 
 $('.user__search__btn').click(() => {
   event.preventDefault()
-  userRepo.getCurrentUser($('.user__search__input').val())
-  console.log('first user ', userRepo.users[0])
-  // if (userRepo.users.includes($('.user__search__input').val())) {
-  //   console.log('yes')
-  // }
-  newUserInfo()
+  let isUser = userRepo.users.find(user => {
+    return user.name === $('.user__search__input').val()
+  })
+  console.log('you bet ya ', isUser)
+  console.log('user count ', userRepo.users.length)
+  if (typeof isUser === 'undefined') {
+    makeNewUser()
+    userRepo.getCurrentUser($('.user__search__input').val())
+    newUserInfo()
+  } else {
+    userRepo.getCurrentUser($('.user__search__input').val())
+    newUserInfo()
+  }
 })
   
 $('.tabs li').click(tabClick)
@@ -121,6 +128,9 @@ function orderFood() {
   let order = readGuestsMind()
   roomServiceRepo.roomService.push(instaCook(order))
   newUserInfo()
+  DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
+  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
+
 }
 
 function readGuestsMind() {
@@ -150,8 +160,16 @@ function bookRoom() {
   let newBooking = {userID: userRepo.currentUser.id,
     date: today,
     roomNumber: roomInfo.number}
-  console.log(bookingsRepo.bookings)
   bookingsRepo.bookings.push(newBooking)
+  DomUpdates.generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo)
+  DomUpdates.loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService)
   console.log(bookingsRepo.bookings)
+}
 
+function makeNewUser() {
+  let newUser = {
+    id: userRepo.users.length + 1,
+    name: $('.user__search__input').val()
+  };
+  userRepo.users.push(newUser)
 }
