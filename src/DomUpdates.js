@@ -19,7 +19,7 @@ let DomUpdates = {
     $("#" + id).addClass('current');
   },
 
-  generalMain(roomServiceRepo, userRepo, bookingsRepo, roomsRepo) {
+  generalMain(roomServiceRepo, bookingsRepo, roomsRepo) {
     $('.rooms__available').text(bookingsRepo.numRoomsAvailable(today))
     $('.todays__income').text(roomServiceRepo.totalOrderCost(today) 
       + bookingsRepo.totalRoomCost(today, roomsRepo))
@@ -30,17 +30,28 @@ let DomUpdates = {
     $('.open_rooms_by_date').text()
   },
 
-  loadUserInfo(roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService) {
+  loadUserInfo(userRepo, roomService) {
     $('.guest__name').text(userRepo.currentUser.name)
     $('.guest__id').text(userRepo.currentUser.id)
     if (roomService.allOrders.length === 0) {
       $('.all__personal__orders').text('Customer has no order history')
     } else {
-      $('.all__personal__orders').text(roomService.allOrders)
+      this.loadAllOrders(roomService)
     }
     $('.personal__spent__by__day').text(roomService.todaysTotal(today))
     $('.personal__grand__total_spent').text(roomService.totalOrders())
-    console.log(roomService.allOrders)
+  },
+
+  loadAllOrders(roomService) {
+    $('.all__personal__orders').empty()
+    roomService.allOrders.forEach(order => {
+      $('.all__personal__orders').append(`
+        <p>Date: ${order.date}</p>
+        <p>Sandwich: ${order.food}</p>
+        <p>Price: ${order.totalCost}</p>
+      `)
+    })
+
   },
 
   roomsByDate(bookingsRepo, date) {
