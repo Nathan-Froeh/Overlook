@@ -1,7 +1,6 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: pink;
 
-
 body {
   margin: 0;
   padding: 0;
@@ -18,12 +17,16 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  font-size: 30px;
+}
+
 nav {
   padding: 10px;
   background: #3B8DBC;
   height: 10%;
   width: 100%;
-  div{
+  div {
     display: flex;
     align-items: baseline;
     width: 400px;
@@ -48,7 +51,7 @@ main {
 }
 
 img {
-  width: 30px;
+  width: 60px;
 }
 
 ul.tabs{
@@ -56,14 +59,21 @@ ul.tabs{
   padding: 0px;
   list-style: none;
 }
+
 ul.tabs li{
   background: none;
   color: #222;
   display: inline-block;
   padding: 10px 15px;
   cursor: pointer;
-  height: 30px;
-  width: 60px;
+  height: 60px;
+  width: 100px;
+}
+
+li {
+  img {
+    margin-left: 20px;
+  }
 }
 
 ul.tabs li.current{
@@ -83,7 +93,6 @@ ul.tabs li.current{
 
 div.personal {
   border: red solid 2px;
-
 }
 
 .hidden {
