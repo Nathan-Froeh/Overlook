@@ -40,8 +40,11 @@ $('.user__search__input').keypress(() => {
   
 })
 
-$('.user__search__btn').click(isCurrentUser)
-  
+$('.user__search__btn').click(() => {
+  event.preventDefault()
+  $('.user__search__input').val() !== '' ? isCurrentUser() : null;
+})
+
 $('.tabs li').click(tabClick)
 $('.submit__rooms__date').click(roomsByDate)
 $('.order__submit').click(orderFood)
@@ -95,7 +98,6 @@ function getGeneral() {
 }
 
 function isCurrentUser() {
-  event.preventDefault()
   let isUser = userRepo.users.find(user => {
     return user.name === $('.user__search__input').val()
   })
@@ -161,6 +163,7 @@ function bookRoom() {
     date: today,
     roomNumber: roomInfo.number}
   bookingsRepo.bookings.push(newBooking)
+  DomUpdates.roomBooked()
   refresh()
   console.log(bookingsRepo.numRoomsAvailable(today))
 }

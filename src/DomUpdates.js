@@ -1,15 +1,9 @@
 import $ from 'jquery';
 import './css/base.scss';
-import RoomServiceRepo from '../src/RoomServiceRepo.js';
-import RoomService from '../src/RoomService.js';
-import UserRepo from '../src/UserRepo.js';
-import BookingsRepo from '../src/BookingsRepo.js';
-import RoomsRepo from '../src/RoomsRepo.js';
 
 let today = new Date().toLocaleDateString('en-GB')
 console.log(today)
 // today = '01/01/2020'
-let roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService;
 let DomUpdates = {
 
   tabClick(id, it) {
@@ -34,7 +28,7 @@ let DomUpdates = {
     $('.guest__name').text(userRepo.currentUser.name)
     $('.guest__id').text(userRepo.currentUser.id)
     if (roomService.allOrders.length === 0) {
-      $('.all__personal__orders').text('Customer has no order history')
+      $('.all__personal__orders').text('Guest has no order history')
     } else {
       this.loadAllOrders(roomService)
     }
@@ -60,7 +54,7 @@ let DomUpdates = {
 
   displayRoomByType(info) {
     $('.room__option').remove()
-    $('.no__room__booked').append(`
+    $('.room__not__booked').append(`
       <section class = 'room__option'>
         <p>Room type: <span>${info[1]}</span></p>
         <p>Bed count: <span>${info[4]}</span></p>
@@ -79,6 +73,11 @@ let DomUpdates = {
 
   hideUserInfo() {
     $('.personal').addClass('hidden')
+  },
+
+  roomBooked() {
+    $('.room__not__booked').addClass('hidden');
+    $('.room__booked').removeClass('hidden')
   }
 
 }
