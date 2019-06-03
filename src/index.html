@@ -29,11 +29,11 @@
         </ul>
         <article id="tab-1" class="tab-content current">
           <!-- <h2>Main</h2> -->
-          <!-- <p>Rooms Available: <span class = 'rooms__available'></span> </p> -->
+          <p>Rooms Available: <span class = 'rooms__available'></span> </p>
           <p>Today's Income: <span class = 'todays__income'></span></p>
-          <!-- <p>Filled Rooms: <span class = 'rooms__full'></span>%</p> -->
+          <p>Filled Rooms: <span class = 'rooms__full'></span>%</p>
           <div class = 'canvas'>
-            <canvas id="myChart" width="100" height="100"></canvas>
+            <canvas id="myChart" ></canvas>
           </div>
         </article>
         <article id="tab-2" class="tab-content">
@@ -42,9 +42,9 @@
             <p>Today's Orders: <span class = 'total__orders'></span></p>
           </div>
           <div class = 'personal hidden'>
-            <p>Guest order history: <span class = 'all__personal__orders'></span></p>
             <p>Guest daily bill: <span class = 'personal__spent__by__day'></span></p>
             <p>Guest total bill: <span class = 'personal__grand__total_spent'></span></p>
+            <p>Guest order history: <span class = 'all__personal__orders'></span></p>
           </div>
         </article>
         <article id="tab-3" class="tab-content">
@@ -68,8 +68,9 @@
               <button class = 'select__room__type'>Suite</button>
             </div>
             <form action="submit order" class = 'room__booked hidden'>
-              <label for="order__submit">Place order </label>
-              <input type="submit" class = 'order__submit'>
+              <button class = 'order__submit'>Place Order</button>
+              <button class = 'remove__booking'>Remove Booking</button>
+              <button class = 'change__room'>Change Room</button>
             </form>
           </div>
         </article>
@@ -94,6 +95,5 @@
 
 
 
-<!-- pie chart on main tab for rooms open by type and rooms filled -->
 <!-- Add emergency/panic button -->
 <!-- Add welcome screen to hide loading -->

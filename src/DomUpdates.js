@@ -4,7 +4,7 @@ import Chart from 'chart.js';
 
 let today = new Date().toLocaleDateString('en-GB')
 console.log(today)
-// today = '01/01/2020'
+
 let DomUpdates = {
 
   tabClick(id, it) {
@@ -16,8 +16,8 @@ let DomUpdates = {
 
   generalMain(roomServiceRepo, bookingsRepo, roomsRepo) {
     $('.rooms__available').text(bookingsRepo.numRoomsAvailable(today))
-    $('.todays__income').text(roomServiceRepo.totalOrderCost(today) 
-      + bookingsRepo.totalRoomCost(today, roomsRepo))
+    $('.todays__income').text(Number((roomServiceRepo.totalOrderCost(today) 
+      + bookingsRepo.totalRoomCost(today, roomsRepo)).toFixed(2)))
     $('.rooms__full').text(roomsRepo.percentRoomsAvailable(bookingsRepo, today))
     $('.total__orders').text(roomServiceRepo.totalOrderCost(today))
     $('.popular__book').text(bookingsRepo.mostPopularDay())
@@ -80,11 +80,16 @@ let DomUpdates = {
 
   roomBooked() {
     $('.room__not__booked').addClass('hidden');
-    $('.room__booked').removeClass('hidden')
+    $('.room__booked').removeClass('hidden');
+  },
+
+  loadNewUser() {
+    $('.room__not__booked').removeClass('hidden');
+    $('.room__booked').addClass('hidden');
   },
 
   mainChart(bookingsRepo, count) {
-    
+    $('#myChart').empty()
     var myChart = new Chart($('#myChart'), {
       type: 'doughnut',
       data: {
@@ -111,15 +116,15 @@ let DomUpdates = {
           borderWidth: 1
         }]
       },
-    //   options: {
-    //     scales: {
-    //       yAxes: [{
-    //         ticks: {
-    //           beginAtZero: true
-    //         }
-    //       }]
-    //     }
-    //   }
+      // options: {
+      //   scales: {
+      //     yAxes: [{
+      //       ticks: {
+      //         beginAtZero: true
+      //       }
+      //     }]
+      //   }
+      // }
     });
   }
 

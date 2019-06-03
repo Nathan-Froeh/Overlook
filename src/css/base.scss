@@ -22,8 +22,14 @@ h2 {
 }
 
 .canvas {
-  height: 50%;
-  width: 50%;
+  height: 90%;
+  width: 90%;
+  margin: auto;
+}
+
+canvas {
+  height: 100% !important;
+  width: 100% !important;
 }
 
 nav {

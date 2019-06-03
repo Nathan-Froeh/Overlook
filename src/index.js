@@ -45,11 +45,13 @@ $('.user__search__btn').click(() => {
   $('.user__search__input').val() !== '' ? isCurrentUser() : null;
 })
 
-$('.tabs li').click(tabClick)
-$('.submit__rooms__date').click(roomsByDate)
-$('.order__submit').click(orderFood)
-$('.select__room__type').click(displayRoomType)
-$(document).on('click', '.book__room', bookRoom)
+$('.tabs li').click(tabClick);
+$('.submit__rooms__date').click(roomsByDate);
+$('.order__submit').click(orderFood);
+$('.select__room__type').click(displayRoomType);
+$(document).on('click', '.book__room', bookRoom);
+$('.remove__booking').click(removeBooking);
+$('.change__room').click(changeRoom);
 
 
 /*---------- FUNCTIONS -----------*/
@@ -117,6 +119,15 @@ function newUserInfo() {
   DomUpdates.loadUserInfo(userRepo, roomService)
 }
 
+function makeNewUser() {
+  let newUser = {
+    id: userRepo.users.length + 1,
+    name: $('.user__search__input').val()
+  };
+  userRepo.users.push(newUser)
+  DomUpdates.loadNewUser()
+}
+
 function getUser() {
   DomUpdates.showUserInfo()
   userRepo.getCurrentUser($('.user__search__input').val())
@@ -171,53 +182,21 @@ function bookRoom() {
   console.log(bookingsRepo.numRoomsAvailable(today))
 }
 
-function makeNewUser() {
-  let newUser = {
-    id: userRepo.users.length + 1,
-    name: $('.user__search__input').val()
-  };
-  userRepo.users.push(newUser)
-}
-
 function refresh() {
-  DomUpdates.generalMain(roomServiceRepo, bookingsRepo, roomsRepo)
-  DomUpdates.loadUserInfo(userRepo, roomService)
+  getGeneral();
+  DomUpdates.loadUserInfo(userRepo, roomService);
 }
 
+function removeBooking() {
+  event.preventDefault()
+  let booking = bookingsRepo.bookings.findIndex(booking => {
+    return booking.userID === userRepo.currentUser.id
+  })
+  bookingsRepo.bookings.splice(booking, 1)
+  DomUpdates.loadNewUser()
+}
 
-// var ctx = document.getElementById('myChart');
-// var myChart = new Chart(ctx, {
-//   type: 'pie',
-//   data: {
-//     labels: ['Total filled', 'Suite', 'Residential Suite', 'Single Room'
-//       , 'Junior Suite'],
-//     datasets: [{
-//       label: '# of Votes',
-//       data: [`${bookingsRepo.bookingByDate()[today]}`, 19, 3, 5, 2],
-//       backgroundColor: [
-//         'rgba(255, 99, 132, 0.2)',
-//         'rgba(54, 162, 235, 0.2)',
-//         'rgba(255, 206, 86, 0.2)',
-//         'rgba(75, 192, 192, 0.2)',
-//         'rgba(153, 102, 255, 0.2)',
-//       ],
-//       borderColor: [
-//         'rgba(255, 99, 132, 1)',
-//         'rgba(54, 162, 235, 1)',
-//         'rgba(255, 206, 86, 1)',
-//         'rgba(75, 192, 192, 1)',
-//         'rgba(153, 102, 255, 1)',
-//       ],
-//       borderWidth: 1
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero: true
-//         }
-//       }]
-//     }
-//   }
-// });
+function changeRoom() {
+  event.preventDefault()
+  DomUpdates.loadNewUser()
+}
