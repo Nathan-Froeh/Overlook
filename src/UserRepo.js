@@ -8,7 +8,6 @@ class UserRepo {
 
   getCurrentUser(name) {
     let newUser = this.users.find(user => user.name === name)
-    console.log('New User ', newUser)
     this.currentUser = newUser;
   }
 

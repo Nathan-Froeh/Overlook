@@ -44,7 +44,7 @@ describe('BookingsRepo', () => {
   })
 
   it('should return number of rooms available', () => {
-    expect(bookingsRepo.numRoomsAvailable('21/10/2019')).to.equal(7)
+    expect(bookingsRepo.numRoomsAvailable('21/10/2019')).to.equal(197)
   })
 
   it('should return rooms available by type for a given day', () => {

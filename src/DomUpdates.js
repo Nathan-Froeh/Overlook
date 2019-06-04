@@ -30,22 +30,25 @@ let DomUpdates = {
   loadUserInfo(userRepo, roomService) {
     $('.guest__name').text(userRepo.currentUser.name)
     $('.guest__id').text(userRepo.currentUser.id)
-    if (roomService.allOrders.length === 0) {
-      $('.all__personal__orders').text('Guest has no order history')
-    } else {
-      this.loadAllOrders(roomService)
-    }
     $('.personal__spent__by__day').text(roomService.todaysTotal(today))
     $('.personal__grand__total_spent').text(roomService.totalOrders())
   },
 
-  loadAllOrders(roomService) {
+  clearOrders() {
     $('.all__personal__orders').empty()
-    roomService.allOrders.forEach(order => {
-      $('.all__personal__orders').append(`
-        <p>Date: ${order.date}</p>
-        <p>Sandwich: ${order.food}</p>
-        <p>Price: ${order.totalCost}</p>
+  },
+
+  noOrders() {
+    $('.all__personal__orders').text('Guest has no order history')
+  },
+
+  loadAllOrders(date, orders) {
+    $('.all__personal__orders').append(`
+    <h4 class = 'date' id = 'date${date}'>${date}</h4>
+    `)
+    orders.forEach(order => {
+      $(`#date${date}`).append(`
+        <p class = 'hidden'>${order}</p>
       `)
     })
 

@@ -49,9 +49,10 @@ $('.tabs li').click(tabClick);
 $('.submit__rooms__date').click(roomsByDate);
 $('.order__submit').click(orderFood);
 $('.select__room__type').click(displayRoomType);
-$(document).on('click', '.book__room', bookRoom);
 $('.remove__booking').click(removeBooking);
 $('.change__room').click(changeRoom);
+$(document).on('click', '.book__room', bookRoom);
+$(document).on('click', '.date', showOrders)
 
 
 /*---------- FUNCTIONS -----------*/
@@ -117,6 +118,7 @@ function isCurrentUser() {
 function newUserInfo() {
   roomService = roomServiceRepo.makeRoomService(userRepo.currentUser.id)
   DomUpdates.loadUserInfo(userRepo, roomService)
+  checkOrders()
 }
 
 function makeNewUser() {
@@ -185,6 +187,7 @@ function bookRoom() {
 function refresh() {
   getGeneral();
   DomUpdates.loadUserInfo(userRepo, roomService);
+  checkOrders()
 }
 
 function removeBooking() {
@@ -199,4 +202,24 @@ function removeBooking() {
 function changeRoom() {
   event.preventDefault()
   DomUpdates.loadNewUser()
+  DomUpdates.generalMain(roomServiceRepo, bookingsRepo, roomsRepo)
+}
+
+function checkOrders() {
+  DomUpdates.clearOrders()
+  if (roomService.allOrders.length === 0) {
+    DomUpdates.noOrders()
+  } else {
+    Object.keys(roomService.sortOrdersByDate()).forEach(date => {
+      let theDate = date.split('/').join('-');
+      let orders = roomService.sortOrdersByDate()[date]
+      DomUpdates.loadAllOrders(theDate, orders)
+    })
+  }
+}
+
+function showOrders(e) {
+  console.log(e.target.id)
+  let id = `#${e.target.id}`
+  $(id).children().toggle('hidden')
 }
