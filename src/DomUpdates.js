@@ -44,10 +44,12 @@ let DomUpdates = {
 
   loadAllOrders(date, orders) {
     $('.all__personal__orders').append(`
-    <h4 class = 'date' id = 'date${date}'>${date}</h4>
+    <section class = '${date} order__by__date'>
+      <button class = 'date' id = 'date${date}'>${date}</button>
+    </section>
     `)
     orders.forEach(order => {
-      $(`#date${date}`).append(`
+      $(`.${date}`).append(`
         <p class = 'hidden'>${order}</p>
       `)
     })

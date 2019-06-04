@@ -221,5 +221,5 @@ function checkOrders() {
 function showOrders(e) {
   console.log(e.target.id)
   let id = `#${e.target.id}`
-  $(id).children().toggle('hidden')
+  $(id).siblings().toggle('hidden')
 }
