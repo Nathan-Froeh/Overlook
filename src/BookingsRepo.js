@@ -6,12 +6,12 @@ class BookingsRepo {
 
   totalRoomCost(date, roomsRepo) {
     let roomNums = this.searchByDate(date).map(booking => booking.roomNumber);
-    return roomsRepo.rooms.reduce((acc, room) => {
+    return Number(roomsRepo.rooms.reduce((acc, room) => {
       roomNums.forEach(num => {
         num === room.number ? acc += room.costPerNight : null;
       })
       return acc;
-    }, 0)
+    }, 0).toFixed(2))
   }
 
   searchByDate(date) {

@@ -18,7 +18,7 @@ import './images/double-king-size-bed.svg'
 import './images/man-user.svg'
 import './images/covered-food-tray-on-a-hand-of-hotel-room-service.svg'
 import './images/lighthouse.svg'
-
+// import Chart from 'chart.js';
 /*---------- VARIABLES -----------*/
 
 // let userData;
@@ -45,11 +45,14 @@ $('.user__search__btn').click(() => {
   $('.user__search__input').val() !== '' ? isCurrentUser() : null;
 })
 
-$('.tabs li').click(tabClick)
-$('.submit__rooms__date').click(roomsByDate)
-$('.order__submit').click(orderFood)
-$('.select__room__type').click(displayRoomType)
-$(document).on('click', '.book__room', bookRoom)
+$('.tabs li').click(tabClick);
+$('.submit__rooms__date').click(roomsByDate);
+$('.order__submit').click(orderFood);
+$('.select__room__type').click(displayRoomType);
+$('.remove__booking').click(removeBooking);
+$('.change__room').click(changeRoom);
+$(document).on('click', '.book__room', bookRoom);
+$(document).on('click', '.date', showOrders)
 
 
 /*---------- FUNCTIONS -----------*/
@@ -95,6 +98,9 @@ function tabClick() {
   
 function getGeneral() {
   DomUpdates.generalMain(roomServiceRepo, bookingsRepo, roomsRepo)
+  let count = Object.values(bookingsRepo.objectRoomTypes(today, roomsRepo))
+    .map(x => x.length);
+  DomUpdates.mainChart(bookingsRepo, count)
 }
 
 function isCurrentUser() {
@@ -112,6 +118,16 @@ function isCurrentUser() {
 function newUserInfo() {
   roomService = roomServiceRepo.makeRoomService(userRepo.currentUser.id)
   DomUpdates.loadUserInfo(userRepo, roomService)
+  checkOrders()
+}
+
+function makeNewUser() {
+  let newUser = {
+    id: userRepo.users.length + 1,
+    name: $('.user__search__input').val()
+  };
+  userRepo.users.push(newUser)
+  DomUpdates.loadNewUser()
 }
 
 function getUser() {
@@ -168,15 +184,42 @@ function bookRoom() {
   console.log(bookingsRepo.numRoomsAvailable(today))
 }
 
-function makeNewUser() {
-  let newUser = {
-    id: userRepo.users.length + 1,
-    name: $('.user__search__input').val()
-  };
-  userRepo.users.push(newUser)
+function refresh() {
+  getGeneral();
+  DomUpdates.loadUserInfo(userRepo, roomService);
+  checkOrders()
 }
 
-function refresh() {
+function removeBooking() {
+  event.preventDefault()
+  let booking = bookingsRepo.bookings.findIndex(booking => {
+    return booking.userID === userRepo.currentUser.id
+  })
+  bookingsRepo.bookings.splice(booking, 1)
+  DomUpdates.loadNewUser()
+}
+
+function changeRoom() {
+  event.preventDefault()
+  DomUpdates.loadNewUser()
   DomUpdates.generalMain(roomServiceRepo, bookingsRepo, roomsRepo)
-  DomUpdates.loadUserInfo(userRepo, roomService)
+}
+
+function checkOrders() {
+  DomUpdates.clearOrders()
+  if (roomService.allOrders.length === 0) {
+    DomUpdates.noOrders()
+  } else {
+    Object.keys(roomService.sortOrdersByDate()).forEach(date => {
+      let theDate = date.split('/').join('-');
+      let orders = roomService.sortOrdersByDate()[date]
+      DomUpdates.loadAllOrders(theDate, orders)
+    })
+  }
+}
+
+function showOrders(e) {
+  console.log(e.target.id)
+  let id = `#${e.target.id}`
+  $(id).siblings().toggle('hidden')
 }

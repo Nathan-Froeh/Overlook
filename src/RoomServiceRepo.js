@@ -6,10 +6,10 @@ class RoomServiceRepo {
   }
 
   totalOrderCost(today) {
-    return this.roomService.reduce((acc, food) => {
+    return Number(this.roomService.reduce((acc, food) => {
       food.date === today ? acc += food.totalCost : null;
       return acc;
-    }, 0)
+    }, 0).toFixed(2))
   }
 
   makeRoomService(id) {

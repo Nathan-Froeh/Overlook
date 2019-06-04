@@ -18,6 +18,17 @@ class RoomService {
     }, 0).toFixed(2))
   }
 
+  sortOrdersByDate() {
+    let orders = this.allOrders.reduce((acc, order) => {
+      if (!acc[order.date]) {
+        acc[order.date] = []
+      }
+      acc[order.date].push(`${order.food} for $${order.totalCost}`)
+      return acc;
+    }, {})
+    return orders;
+  }
+
 
 }
 

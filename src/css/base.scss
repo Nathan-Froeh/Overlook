@@ -18,7 +18,19 @@ h1 {
 }
 
 h2 {
+  text-align: center;
   font-size: 30px;
+}
+
+.canvas {
+  height: 90%;
+  width: 90%;
+  margin: auto;
+}
+
+canvas {
+  height: 100% !important;
+  width: 100% !important;
 }
 
 nav {
@@ -91,10 +103,50 @@ ul.tabs li.current{
   display: inherit;
 }
 
-div.personal {
-  border: red solid 2px;
+.date {
+  // height: 20px;
+  width: 40%;
+  margin: 10px 0 10px 33%;
+  // background: #3B8DBC;
+  // border: none;
+  // border-radius: 3px;
 }
 
+.order__by__date {
+  background: #ECF0F4;
+  margin: 10px 0 10px 0;
+}
+
+
+button,
+.submit__rooms__date,
+.user__search__btn, 
+.date {
+  height: 30px;
+  background: #3B8DBC;
+  border: none;
+  border-radius: 3px;
+}
+
+input {
+  -webkit-appearance:textfield;
+  height: 30px;
+}
+
+.select__room__type {
+  height: 30px;
+  width: 24%;
+}
+
+.personal {
+  margin-top: 10px;
+}
+
+.room__booked {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
 .hidden {
   display: none;
 }
