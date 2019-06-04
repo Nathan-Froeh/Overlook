@@ -8,7 +8,11 @@ OverLook is a hotel management software that is meant to be mobile friendly and 
 
 ## Installation
 
-First fork and clone this repo.
+First ```fork``` and ```clone``` this repo.
 
 Once cloned, cd into the OverLook directory and ```npm install```
+
+After the install is finished run ```npm start``` to set up a local server.
+
+In your favorite web browser paste ```http://localhost:8080/?``` into the search bar and enjoy!
 
