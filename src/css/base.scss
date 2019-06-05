@@ -72,7 +72,7 @@ ul.tabs{
   list-style: none;
 }
 
-ul.tabs li{
+ul.tabs li {
   background: none;
   color: #222;
   display: inline-block;
@@ -104,12 +104,8 @@ ul.tabs li.current{
 }
 
 .date {
-  // height: 20px;
   width: 40%;
   margin: 10px 0 10px 33%;
-  // background: #3B8DBC;
-  // border: none;
-  // border-radius: 3px;
 }
 
 .order__by__date {
@@ -147,6 +143,64 @@ input {
   display: flex;
   justify-content: space-around;
 }
+
+
+@media screen and (max-width:600px) {
+
+h1 {
+  font-size: 40px;
+}
+
+nav {
+  div {
+    margin: 10px;
+    img {
+      height: 30px;
+      width: 30px;
+      border: solid black 5px;
+    }
+  }
+}
+
+img {
+  width: 40px;
+}
+
+ul.tabs li {
+  height: 40px;
+  width: 40px;
+}
+
+li img {
+  margin-left: 0px;
+}
+
+.room__not__booked {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+label {
+  -webkit-appearance:textfield;
+  width: 100%;
+}
+
+h3 {
+  width: 100%;
+}
+
+.select__room__type {
+  margin: 10px 5px 10px 5px;
+  width: 100px;
+}
+
+.room__option {
+  width: 100%;
+}
+
+}
+
 .hidden {
   display: none;
 }
