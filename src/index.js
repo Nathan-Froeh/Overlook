@@ -7,7 +7,6 @@ import $ from 'jquery';
 
 import './css/base.scss';
 import RoomServiceRepo from '../src/RoomServiceRepo.js'
-import RoomService from '../src/RoomService.js'
 import UserRepo from '../src/UserRepo.js'
 import BookingsRepo from '../src/BookingsRepo.js';
 import RoomsRepo from '../src/RoomsRepo.js'
@@ -62,7 +61,6 @@ function fetchUsers() {
     .then(response => response.json())
     .then(data => {
       userRepo = new UserRepo(data.users);
-      console.log('users ', userRepo.users)
     });
 }
 
@@ -71,7 +69,6 @@ function fetchRooms() {
     .then(response => response.json())
     .then(data => {
       roomsRepo = new RoomsRepo(data.rooms);
-      console.log('rooms ', roomsRepo.rooms)
     });
 }
 function fetchBookings() {
@@ -79,7 +76,6 @@ function fetchBookings() {
     .then(response => response.json())
     .then(data => {
       bookingsRepo = new BookingsRepo(data.bookings);
-      console.log('bookings ', bookingsRepo.bookings)
     });
 }
 function fetchRoomService() {
@@ -87,7 +83,6 @@ function fetchRoomService() {
     .then(response => response.json())
     .then(data => {
       roomServiceRepo = new RoomServiceRepo(data.roomServices);
-      console.log('room service ', roomServiceRepo.roomService)
     });
 }
 
@@ -138,7 +133,6 @@ function getUser() {
 
 function roomsByDate() {
   event.preventDefault()
-  console.log($('.rooms__date__select').val().split('-').reverse().join('/'))
   let date = $('.rooms__date__select').val().split('-').reverse().join('/');
   DomUpdates.roomsByDate(bookingsRepo, date);
 }
@@ -181,7 +175,6 @@ function bookRoom() {
   bookingsRepo.bookings.push(newBooking)
   DomUpdates.roomBooked()
   refresh()
-  console.log(bookingsRepo.numRoomsAvailable(today))
 }
 
 function refresh() {
@@ -219,7 +212,6 @@ function checkOrders() {
 }
 
 function showOrders(e) {
-  console.log(e.target.id)
   let id = `#${e.target.id}`
   $(id).siblings().toggle('hidden')
 }

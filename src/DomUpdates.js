@@ -3,7 +3,6 @@ import './css/base.scss';
 import Chart from 'chart.js';
 
 let today = new Date().toLocaleDateString('en-GB')
-console.log(today)
 
 let DomUpdates = {
 
@@ -23,7 +22,6 @@ let DomUpdates = {
     $('.popular__book').text(bookingsRepo.mostPopularDay())
     $('.least__popular').text(bookingsRepo.leastPopularDay(today))
     $('.open_rooms_by_date').text()
-    console.log(bookingsRepo.objectRoomTypes(today, roomsRepo))
     this.mainChart(bookingsRepo, roomsRepo)
   },
 
@@ -120,16 +118,7 @@ let DomUpdates = {
           ],
           borderWidth: 1
         }]
-      },
-      // options: {
-      //   scales: {
-      //     yAxes: [{
-      //       ticks: {
-      //         beginAtZero: true
-      //       }
-      //     }]
-      //   }
-      // }
+      }
     });
   }
 
