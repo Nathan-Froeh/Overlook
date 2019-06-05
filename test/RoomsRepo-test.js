@@ -1,3 +1,4 @@
+
 import chai from 'chai';
 const expect = chai.expect;
 import RoomsRepo from '../src/RoomsRepo.js'
@@ -32,5 +33,4 @@ describe('RoomsRepo', () => {
     expect(roomsRepo.percentRoomsAvailable(bookingsRepo, '21/10/2019'))
       .to.equal(30)
   })
-
 })

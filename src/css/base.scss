@@ -1,15 +1,28 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+
+$main_color: #3B8DBC;
+$main_background: #ECF0F5;
+$tab_background: white;
+
+@mixin size($h, $w) {
+  height: $h;
+  width: $w;
+}
+
+@mixin flex($disp, $wrap, $just, $align, $item) {
+  display: $disp;
+  flex-wrap: $wrap;
+  justify-content: $just;
+  align-content: $align;
+  align-items: $item;
+}
 
 body {
+  @include size(100vh, 100vw);
+  @include flex(flex, wrap, null, null, null);
   margin: 0;
   padding: 0;
-  height: 100vh;
-  width: 100vw;
   font-family: 'Trebuchet MS', serif;
   line-height: 1.6;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 h1 {
@@ -23,28 +36,23 @@ h2 {
 }
 
 .canvas {
-  height: 90%;
-  width: 90%;
+  @include size(90%, 90%);
   margin: auto;
 }
 
 canvas {
-  height: 100% !important;
-  width: 100% !important;
+  @include size(100% !important, 100% !important);
 }
 
 nav {
+  @include size(10%, 100%);
   padding: 10px;
-  background: #3B8DBC;
-  height: 10%;
-  width: 100%;
+  background: $main_color;
   div {
-    display: flex;
-    align-items: baseline;
-    width: 400px;
+    @include flex(flex, null, null, null, baseline);
+    @include size(null, 400px);
     img {
-    height: 50px;
-    width: 50px;
+    @include size(50px, 50px);
     border: solid black 7px;
     border-radius: 50%;
     }
@@ -52,18 +60,17 @@ nav {
 }
 
 main {
-  height: 90%;
-  width: 100%;
-  background: #ECF0F5;
+  @include size(90%, 100%);
+  background: $main_background;
 }
 
 .container{
-  width: 90%;
+  @include size(null, 90%);
   margin: 0 auto;
 }
 
 img {
-  width: 60px;
+  @include size(null, 60px);
 }
 
 ul.tabs{
@@ -73,13 +80,11 @@ ul.tabs{
 }
 
 ul.tabs li {
+  @include size(60px, 100px);
   background: none;
-  color: #222;
   display: inline-block;
   padding: 10px 15px;
   cursor: pointer;
-  height: 60px;
-  width: 100px;
 }
 
 li {
@@ -89,13 +94,12 @@ li {
 }
 
 ul.tabs li.current{
-  background: white;
-  color: #222;
+  background: $tab_background;
 }
 
 .tab-content{
+  background: $tab_background;
   display: none;
-  background: white;
   padding: 15px;
 }
 
@@ -104,12 +108,12 @@ ul.tabs li.current{
 }
 
 .date {
-  width: 40%;
+  @include size(null, 40%);
   margin: 10px 0 10px 33%;
 }
 
 .order__by__date {
-  background: #ECF0F4;
+  background: $main_background;
   margin: 10px 0 10px 0;
 }
 
@@ -118,20 +122,20 @@ button,
 .submit__rooms__date,
 .user__search__btn, 
 .date {
-  height: 30px;
-  background: #3B8DBC;
+  @include size(30px, null);
+  background: $main_color;
   border: none;
   border-radius: 3px;
 }
 
 input {
+  @include size(30px, null);
   -webkit-appearance:textfield;
   height: 30px;
 }
 
 .select__room__type {
-  height: 30px;
-  width: 24%;
+  @include size(30px, 24%);
 }
 
 .personal {
@@ -140,8 +144,7 @@ input {
 
 .room__booked {
   margin-top: 30px;
-  display: flex;
-  justify-content: space-around;
+  @include flex(flex, null, space-around, null, null);
 }
 
 
@@ -155,20 +158,18 @@ nav {
   div {
     margin: 10px;
     img {
-      height: 30px;
-      width: 30px;
+      @include size(30px, 30px);
       border: solid black 5px;
     }
   }
 }
 
 img {
-  width: 40px;
+  @include size(null, 40px);
 }
 
 ul.tabs li {
-  height: 40px;
-  width: 40px;
+  @include size(40px, 40px);
 }
 
 li img {
@@ -176,27 +177,25 @@ li img {
 }
 
 .room__not__booked {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  @include flex(flex, wrap, center, null, null);
 }
 
 label {
+  @include size(null, 100%);
   -webkit-appearance:textfield;
-  width: 100%;
 }
 
 h3 {
-  width: 100%;
+  @include size(null, 100%);
 }
 
 .select__room__type {
+  @include size(null, 100%);
   margin: 10px 5px 10px 5px;
-  width: 100px;
 }
 
 .room__option {
-  width: 100%;
+  @include size(null, 100%);
 }
 
 }

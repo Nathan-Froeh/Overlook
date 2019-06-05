@@ -1,4 +1,4 @@
-import $ from 'jquery';
+
 import chai from 'chai';
 const expect = chai.expect;
 import RoomService from '../src/RoomService.js'
@@ -77,6 +77,4 @@ describe('RoomService', () => {
     '15/07/2019': [ 'Tasty Fresh Sandwich for $13.07' ],
     '01/01/2020': [ 'Rustic Soft Sandwich for $18.63' ] })
   })
-
-  
 })

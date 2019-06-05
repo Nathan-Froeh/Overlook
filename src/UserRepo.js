@@ -1,5 +1,4 @@
 
-
 class UserRepo {
   constructor(users) {
     this.users = users;
@@ -10,8 +9,6 @@ class UserRepo {
     let newUser = this.users.find(user => user.name === name)
     this.currentUser = newUser;
   }
-
 }
-
 
 export default UserRepo;

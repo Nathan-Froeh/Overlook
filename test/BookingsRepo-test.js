@@ -51,5 +51,4 @@ describe('BookingsRepo', () => {
     expect(bookingsRepo.availableByType('21/10/2019', "residential suite"
       , roomsRepo)).to.deep.equal(availableRoom)
   })
-
 })

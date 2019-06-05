@@ -88,11 +88,5 @@ class BookingsRepo {
 
 export default BookingsRepo;
 
-// BookingsRepo:
-// 	totalRoomCost() total room cost for today
-// 	mostPopularDay() finds the most booked date
-// 	leastPopularDay() finds day with least bookings
-// 	roomsAvailable( date ) finds currently open rooms
-// 	availableByType( today, type ) finds a room open today by type or all available rooms
 
 
