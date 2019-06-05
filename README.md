@@ -16,3 +16,11 @@ After the install is finished run ```npm start``` to set up a local server.
 
 In your favorite web browser paste ```http://localhost:8080/?``` into the search bar and enjoy!
 
+## Screen Shots
+
+![Main page](https://github.com/Nathan-Froeh/Overlook/blob/master/src/images/Screen%20Shot%202019-06-05%20at%207.33.40%20AM.png)
+![Rooms Tab](https://github.com/Nathan-Froeh/Overlook/blob/master/src/images/Screen%20Shot%202019-06-05%20at%207.34.58%20AM.png)
+![Orders Tab](https://github.com/Nathan-Froeh/Overlook/blob/master/src/images/Screen%20Shot%202019-06-05%20at%207.35.49%20AM.png)
+![Mobile Main Tab](https://github.com/Nathan-Froeh/Overlook/blob/master/src/images/Screen%20Shot%202019-06-05%20at%207.37.30%20AM.png)
+![Mobile Rooms Tab](https://github.com/Nathan-Froeh/Overlook/blob/master/src/images/Screen%20Shot%202019-06-05%20at%207.36.50%20AM.png)
+![Mobile Orders Tab](https://github.com/Nathan-Froeh/Overlook/blob/master/src/images/Screen%20Shot%202019-06-05%20at%207.37.11%20AM.png)
