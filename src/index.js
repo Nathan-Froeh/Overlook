@@ -1,10 +1,7 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
 
 /*---------- IMPORTS -----------*/
 
 import $ from 'jquery';
-
 import './css/base.scss';
 import RoomServiceRepo from '../src/RoomServiceRepo.js'
 import UserRepo from '../src/UserRepo.js'
@@ -17,10 +14,8 @@ import './images/double-king-size-bed.svg'
 import './images/man-user.svg'
 import './images/covered-food-tray-on-a-hand-of-hotel-room-service.svg'
 import './images/lighthouse.svg'
-// import Chart from 'chart.js';
 /*---------- VARIABLES -----------*/
 
-// let userData;
 let roomServiceRepo, userRepo, bookingsRepo, roomsRepo, roomService;
 let roomInfo;
 let today = new Date().toLocaleDateString('en-GB')
@@ -32,11 +27,6 @@ $(document).ready(() => {
   fetchBookings()
   fetchRoomService()
   setTimeout(getGeneral, 600)
-})
-
-
-$('.user__search__input').keypress(() => {
-  
 })
 
 $('.user__search__btn').click(() => {
@@ -52,7 +42,6 @@ $('.remove__booking').click(removeBooking);
 $('.change__room').click(changeRoom);
 $(document).on('click', '.book__room', bookRoom);
 $(document).on('click', '.date', showOrders)
-
 
 /*---------- FUNCTIONS -----------*/
 
@@ -71,6 +60,7 @@ function fetchRooms() {
       roomsRepo = new RoomsRepo(data.rooms);
     });
 }
+
 function fetchBookings() {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/bookings/bookings')
     .then(response => response.json())
@@ -78,6 +68,7 @@ function fetchBookings() {
       bookingsRepo = new BookingsRepo(data.bookings);
     });
 }
+
 function fetchRoomService() {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/room-services/roomServices')
     .then(response => response.json())

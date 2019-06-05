@@ -6,6 +6,7 @@ class RoomsRepo {
     this.single;
     this.junior;
   }
+  
   totalRoomsAvailable(bookingRepo, today) {
     return bookingRepo.numRoomsAvailable(today)
   }
@@ -14,12 +15,6 @@ class RoomsRepo {
     return Number((((bookingsRepo.numRoomsAvailable(today) 
       / -this.rooms.length) + 1 ) * 100).toFixed())
   }
-
-
 }
-
-
-// totalRoomsAvailable() rooms open today
-// percentRoomsAvailable() % rooms full today
 
 export default RoomsRepo;

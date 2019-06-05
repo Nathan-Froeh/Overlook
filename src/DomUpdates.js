@@ -121,7 +121,6 @@ let DomUpdates = {
       }
     });
   }
-
 }
 
 export default DomUpdates;

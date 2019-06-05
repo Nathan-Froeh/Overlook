@@ -1,3 +1,4 @@
+
 import RoomService from '../src/RoomService.js'
 
 class RoomServiceRepo {
@@ -19,7 +20,4 @@ class RoomServiceRepo {
 
 }
 
-
-
-// totalOrderCost( date ) total order cost for today
 export default RoomServiceRepo;

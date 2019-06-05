@@ -1,3 +1,4 @@
+
 class RoomService {
   constructor(id, allOrders) {
     this.id = id;
@@ -28,14 +29,6 @@ class RoomService {
     }, {})
     return orders;
   }
-
-
 }
-
-
-
-// this.allOrders = [ dates and $ by id]
-// todaysTotal( date ) total cost of todays orders
-// this.totalOrders() total spent by this customer 
 
 export default RoomService;

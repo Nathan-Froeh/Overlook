@@ -1,4 +1,4 @@
-import $ from 'jquery';
+
 import chai from 'chai';
 const expect = chai.expect;
 import UserRepo from '../src/UserRepo.js'
