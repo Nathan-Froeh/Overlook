@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>OverLook</title>
+  </head>
+  <body>
+    <nav>
+      <div>
+        <img src="images/lighthouse.svg" alt="OverLook logo, Icon of a lighthouse">
+        <h1>verLook</h1>
+      </div>
+    </nav>
+    <main>
+      <section class="container">
+        <ul class="tabs">
+          <li class="tab-link current" data-tab="tab-1">
+            <img src="images/home-icon-silhouette.svg" alt="Icon silhouette of a home">
+          </li>
+          <li class="tab-link" data-tab="tab-2">
+            <img src="images/covered-food-tray-on-a-hand-of-hotel-room-service.svg" 
+            alt="Icon silhouette of a dinner tray being delivered">
+          </li>
+          <li class="tab-link" data-tab="tab-3">
+            <img src="images/double-king-size-bed.svg" alt="Icon silhouette of a bed">
+          </li>
+          <li class="tab-link" data-tab="tab-4">
+            <img src="images/man-user.svg" alt="Icon silhouette of a person">
+          </li>
+        </ul>
+        <article id="tab-1" class="tab-content current">
+          <h2>Main</h2>
+          <p>Rooms Available: <span class = 'rooms__available'></span> </p>
+          <p>Today's Income: <span class = 'todays__income'></span></p>
+          <p>Filled Rooms: <span class = 'rooms__full'></span>%</p>
+          <div class = 'canvas'>
+            <canvas id="myChart" ></canvas>
+          </div>
+        </article>
+        <article id="tab-2" class="tab-content">
+          <h2>Orders</h2>
+          <div class = 'general'>
+            <p>Today's Orders: <span class = 'total__orders'></span></p>
+          </div>
+          <div class = 'personal hidden'>
+            <p>Guest daily bill: <span class = 'personal__spent__by__day'></span></p>
+            <p>Guest total bill: <span class = 'personal__grand__total_spent'></span></p>
+            <p>Guest order history: <span class = 'all__personal__orders'></span></p>
+          </div>
+        </article>
+        <article id="tab-3" class="tab-content">
+          <h2>Rooms</h2>
+          <div class = 'general'>
+            <p>Highest capacity date: <span class = 'popular__book'></span></p>
+            <p>Lowest capacity date: <span class = 'least__popular'></span></p>
+            <form action="search by date for total open rooms">
+              <label for="rooms__date__select">Open rooms by date: </label>
+              <span class = 'open_rooms_by_date'></span>
+              <input type="date" class = 'rooms__date__select'>
+              <input type="submit" class = 'submit__rooms__date' value = 'Enter'>
+            </form>
+          </div>
+          <div class = 'personal hidden'>
+            <div class = 'room__not__booked'>
+              <h3>Book a room</h3>
+              <button class = 'select__room__type'>Residential suite</button>
+              <button class = 'select__room__type'>Single room</button>
+              <button class = 'select__room__type'>Junior suite</button>
+              <button class = 'select__room__type'>Suite</button>
+            </div>
+            <form action="submit order" class = 'room__booked hidden'>
+              <button class = 'order__submit'>Place Order</button>
+              <button class = 'remove__booking'>Remove Booking</button>
+              <button class = 'change__room'>Change Room</button>
+            </form>
+          </div>
+        </article>
+        <article id="tab-4" class="tab-content">
+          <h2>Curent Guest</h2>
+          <div class = 'general'>
+            <form class = 'user__search'>
+              <input type="search" list = 'user__search' class = 'user__search__input' placeholder="Search by name">
+              <input type="submit" class = 'user__search__btn' value = 'Enter'>
+            </form>
+          </div>
+          <div class = 'personal hidden'>
+            <p>Guest Name: <span class = 'guest__name'></span></p>
+            <p>Guest ID: <span class = 'guest__id'></span></p>
+          </div>
+        </article>
+      </section>
+    </main>
+  <script type="text/javascript" src="main.bundle.js"></script></body>
+</html>
+
