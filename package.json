@@ -8,7 +8,7 @@
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'",
     "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'",
-    "deploy": "gh-pages -d src"
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
