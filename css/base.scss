@@ -1,0 +1,205 @@
+
+$main_color: #3B8DBC;
+$main_background: #ECF0F5;
+$tab_background: white;
+
+@mixin size($h, $w) {
+  height: $h;
+  width: $w;
+}
+
+@mixin flex($disp, $wrap, $just, $align, $item) {
+  display: $disp;
+  flex-wrap: $wrap;
+  justify-content: $just;
+  align-content: $align;
+  align-items: $item;
+}
+
+body {
+  @include size(100vh, 100vw);
+  @include flex(flex, wrap, null, null, null);
+  margin: 0;
+  padding: 0;
+  font-family: 'Trebuchet MS', serif;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 60px;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.canvas {
+  @include size(90%, 90%);
+  margin: auto;
+}
+
+#myChart {
+  @include size(100%, 100%);
+}
+
+nav {
+  @include size(10%, 100%);
+  padding: 10px;
+  background: $main_color;
+  div {
+    @include flex(flex, null, null, null, baseline);
+    @include size(null, 400px);
+    img {
+    @include size(50px, 50px);
+    border: solid black 7px;
+    border-radius: 50%;
+    }
+  }
+}
+
+main {
+  @include size(90%, 100%);
+  background: $main_background;
+}
+
+.container{
+  @include size(null, 90%);
+  margin: 0 auto;
+}
+
+img {
+  @include size(null, 60px);
+}
+
+ul.tabs{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+ul.tabs li {
+  @include size(60px, 100px);
+  background: none;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+li {
+  img {
+    margin-left: 20px;
+  }
+}
+
+ul.tabs li.current{
+  background: $tab_background;
+}
+
+.tab-content{
+  background: $tab_background;
+  display: none;
+  padding: 15px;
+}
+
+.tab-content.current{
+  display: inherit;
+}
+
+.date {
+  @include size(null, 40%);
+  margin: 10px 0 10px 33%;
+}
+
+.order__by__date {
+  background: $main_background;
+  margin: 10px 0 10px 0;
+}
+
+
+button,
+.submit__rooms__date,
+.user__search__btn, 
+.date {
+  @include size(30px, null);
+  background: $main_color;
+  border: none;
+  border-radius: 3px;
+}
+
+input {
+  @include size(30px, null);
+  -webkit-appearance:textfield;
+  height: 30px;
+}
+
+.select__room__type {
+  @include size(30px, 24%);
+}
+
+.personal {
+  margin-top: 10px;
+}
+
+.room__booked {
+  margin-top: 30px;
+  @include flex(flex, null, space-around, null, null);
+}
+
+
+@media screen and (max-width:600px) {
+
+h1 {
+  font-size: 40px;
+}
+
+nav {
+  div {
+    margin: 10px;
+    img {
+      @include size(30px, 30px);
+      border: solid black 5px;
+    }
+  }
+}
+
+img {
+  @include size(null, 40px);
+}
+
+ul.tabs li {
+  @include size(40px, 40px);
+}
+
+li img {
+  margin-left: 0px;
+}
+
+.room__not__booked {
+  @include flex(flex, wrap, center, null, null);
+}
+
+label {
+  @include size(null, 100%);
+  -webkit-appearance:textfield;
+}
+
+h3 {
+  @include size(null, 100%);
+}
+
+.select__room__type {
+  @include size(null, 100%);
+  margin: 10px 5px 10px 5px;
+}
+
+.room__option {
+  @include size(null, 100%);
+}
+
+}
+
+.hidden {
+  display: none;
+}
